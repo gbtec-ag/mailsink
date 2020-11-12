@@ -324,7 +324,7 @@
           <noReleaseBuild>true</noReleaseBuild>
         </configuration>
       </plugin>
-      <plugin>
+      <!-- <plugin>
         <groupId>org.owasp</groupId>
         <artifactId>dependency-check-maven</artifactId>
         <version>5.2.4</version>
@@ -339,7 +339,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin> -->
     </plugins>
   </build>
 </project>
