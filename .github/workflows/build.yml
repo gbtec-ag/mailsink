@@ -31,6 +31,9 @@ jobs:
           path: node_modules
           key: node
 
+      - name: Build jar
+        run: ./mvnw verify
+
       - uses: actions/upload-artifact@master
         with:
           name: mailsink
