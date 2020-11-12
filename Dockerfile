@@ -1,6 +1,6 @@
 FROM openjdk:11-jre-slim
 
-ADD target/mailsink.jar /opt/mailsink.jar
+ADD /target/mailsink.jar /opt/mailsink.jar
 
 EXPOSE 2500 2525
 
