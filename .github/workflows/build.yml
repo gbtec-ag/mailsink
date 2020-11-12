@@ -6,7 +6,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  build:
+  build-jar:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
@@ -31,13 +31,21 @@ jobs:
           path: node_modules
           key: node
 
-      - name: Sonar Cache Directory
-        uses: actions/cache@v1
-        with:
-          path: ~/.sonar/cache
-          key: sonar
+      # - name: Sonar Cache Directory
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: ~/.sonar/cache
+      #     key: sonar
 
-      - name: Check Project
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./mvnw verify sonar:sonar
+      # - name: Check Project
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   run: ./mvnw verify sonar:sonar
+  build-docker:
+    steps:
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2.1.0
+        with:
+          push: true
+          tags: gbtec-ag/mailsink:latest        
+
