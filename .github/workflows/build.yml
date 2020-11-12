@@ -47,6 +47,7 @@ jobs:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #   run: ./mvnw verify sonar:sonar
   build-docker:
+    needs: build-jar
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
