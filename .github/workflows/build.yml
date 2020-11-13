@@ -80,5 +80,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: gbtec-ag/mailsink:latest
+          tags: ghcr.io/gbtec-ag/mailsink:latest
 
