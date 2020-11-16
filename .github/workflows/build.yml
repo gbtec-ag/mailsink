@@ -2,17 +2,11 @@ name: CI
 
 on: [push]
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 jobs:
-  build-jar:
-    runs-on: ubuntu-18.04
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v2
 
       - name: Set up build environment
         uses: actions/setup-java@v1
@@ -34,34 +28,6 @@ jobs:
       - name: Build jar
         run: ./mvnw verify
 
-      - uses: actions/upload-artifact@master
-        with:
-          name: mailsink
-          path: target/mailsink.jar
-
-      # - name: Sonar Cache Directory
-      #   uses: actions/cache@v1
-      #   with:
-      #     path: ~/.sonar/cache
-      #     key: sonar
-
-      # - name: Check Project
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #   run: ./mvnw verify sonar:sonar
-
-  build-docker:
-    needs: build-jar
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - uses: actions/download-artifact@master
-        with:
-          name: mailsink
-          path: target/mailsink.jar
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -80,5 +46,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/mailsink:1.0
+          tags: ghcr.io/${{ github.repository_owner }}/mailsink:latest
 
