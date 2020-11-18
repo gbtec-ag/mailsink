@@ -33,6 +33,32 @@ describe('src/test/javascript/config-tests.js', function () {
         }));
     });
 
+    describe('WEB_SOCKET_ENDPOINT over https', function () {
+
+        var hostname = 'expectedHost';
+        var port = 99999;
+
+        beforeEach(module('mailsinkApp', function ($provide) {
+            $provide.provider('$window', function () {
+                return {
+                    $get: function () {
+                        return {
+                            location: {
+                                hostname: hostname,
+                                port: port,
+                                protocol: 'https:'
+                            }
+                        };
+                    }
+                };
+            });
+        }));
+
+        it('should use secure web sockets over https', inject(function (WEB_SOCKET_ENDPOINT) {
+            expect(WEB_SOCKET_ENDPOINT).toEqual('wss://' + hostname + ':' + port + '/ws/websocket');
+        }));
+    });
+
     describe('stompProvider', function () {
 
         beforeEach(module('mailsinkApp'));
