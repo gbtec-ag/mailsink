@@ -1,3 +1,7 @@
+# ARCHIVED - please use https://github.com/ksokol/mailsink instead.
+
+---
+
 # Mailsink [![Build Status](https://github.com/ksokol/mailsink/workflows/CI/badge.svg)](https://github.com/ksokol/mailsink) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=com.github.ksokol%3Amailsink&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.github.ksokol%3Amailsink)
 
 Mailsink is a simple SMTP server based on [SubEtha](https://github.com/voodoodyne/subetha).
